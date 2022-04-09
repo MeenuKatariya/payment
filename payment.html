@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- <link rel="stylesheet" href="otp.html"> -->
+    <style>
+      h1{
+          text-align: center;
+      }
+      #container{
+          margin:auto;
+          border: 1px solid black;
+          width:30%;
+      }
+     #container>form>input{
+          width:98%;
+          text-align: center;
+          padding-top:1vw;
+          display: flex;
+          flex-direction: column;
+      }
+       #submit{
+          text-align: center;
+          /* margin: auto; */
+          padding-left: 13vw;;
+          border-radius: 1vw;
+          background-color: red;
+      }
+
+
+    </style>
+</head>
+<body>
+    <h1>PAYMENT GATEWAY</h1>
+    <div id="container">
+    <form >
+<input type="number" placeholder="Enter Card Number" id="cardNumber"/>
+<br>
+<input type="text" placeholder="Enter CVV" id="CVV"/>
+<br>
+<input type="text" placeholder="Enter Expiry Date" id="expiryDate"/>
+<br>
+<input type="text" placeholder="Enter Name" id="Name"/>
+<br>
+<input type="submit" id="submit"> 
+
+
+    </form>
+</div>
+
+
+</body>
+
+<script>
+    
+    document.querySelector("form").addEventListener("submit",function(){
+        event.preventDefault();
+        var a=document.querySelector("#cardNumber").value;
+        var b=document.querySelector("#CVV").value;
+        var c=document.querySelector("#expiryDate").value;
+        var d=document.querySelector("#Name").value;
+
+        if(a.length==5 &&  b.length==3 && d.length!=0 && c.length==4 ){
+          alert("succesfully")
+          window.location.href="otp.html";
+       
+      }else{
+          alert("error");
+      }
+    });
+
+</script>
+</html>

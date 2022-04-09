@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+    #short{
+        border: 1px solid black;
+        text-align: center;
+        width:30%;
+        background-color: blue;
+        font-size: 1.5vw;
+    }
+    #input{
+        width:10%;
+      margin-bottom: 1vw;;
+    }
+
+    </style>
+</head>
+<body>
+         
+</body>
+<input type="text" placeholder="Enter Item Name" id="input">
+<button id="button"> click</button>
+
+<div id="short"> <p></p></div>
+    
+    <div id="checkout"></div>
+
+<script>
+
+
+
+  
+var cartData=JSON.parse(localStorage.getItem("cartData"));
+
+document.querySelector("#button").addEventListener("click" ,print);
+
+
+
+function print(){
+
+    var total=cartData.reduce(function(sum,ele,idx,arr){
+return sum+=Number(ele.price);
+} ,0);
+
+ if("masai30"==document.querySelector("#input").value)
+ {
+    var discount=(total*30)/100;
+    var ans=total-discount;
+    var totalsum=cartData.length;
+    
+ }
+ document.querySelector("p").innerText="You have"+" "+totalsum+" "+"items"+" "+"in your cart"+" " +ans; 
+}
+
+
+
+cartData.forEach((cartItem,CartIndex) =>
+{
+var box=document.createElement("div");
+// box.setAttribute("class",box);
+  
+var image=document.createElement("img");
+image.src= cartItem.image_url;
+
+var name=document.createElement('p');
+name.innerText=cartItem.name;
+
+var price=document.createElement("p");
+price.innerText=cartItem.price;
+
+var cartButton=document.createElement("button");
+cartButton.innerText="Remove From cart";
+
+cartButton.addEventListener("click",function(){
+    cartData.splice(CartIndex, 1)
+    localStorage.setItem("cartData",JSON.stringify(cartData));
+window.location.reload();
+
+});
+
+
+
+
+box.append(image,name,price,cartButton);
+//box1.append(img,n,p,Button);
+document.querySelector("#checkout").append(box);
+//document.querySelector("#checkout").append(box1);
+
+});
+
+</script>
+</html>
